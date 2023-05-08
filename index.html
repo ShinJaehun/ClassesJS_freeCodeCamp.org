@@ -1,0 +1,160 @@
+<body>
+    <h2 id="title">Clases: The Basics</h2>
+    <ul id="myList">
+        <!-- 
+            <li>Item 1</li>
+            <li>Item 2</li>
+        -->
+    </ul>
+    <script src="ListBinding.js"></script>
+    <script type="text/javascript">
+        class Rectangle {
+            constructor(_width, _height, _color){
+                console.log("The Rectangle is being created!");
+                this.width = _width;
+                this.height = _height;
+                this.color = _color;
+            }
+
+            getArea(){
+                return this.width * this.height;
+            }
+
+            printDescription(){
+                console.log(`I am a rectangle of ${this.width} x ${this.height} and I am ${this.color}`)
+            }
+        }
+        // let myRectangle1 = new Rectangle(5, 3, "blue");
+        // let myRectangle2 = new Rectangle(10, 5, "red");
+        // console.log(myRectangle1.getArea());
+        // console.log(myRectangle2.getArea());
+        // console.log(myRectangle1.printDescription())
+
+        class SquareA {
+            constructor(_width){
+                this.width = _width;
+                this.height = _width;
+                this.numOfRequestsForArea = 0;
+            }
+
+            get area(){
+                this.numOfRequestsForArea++;
+                return this.width * this.height;
+            }
+
+            set area(area) {
+                this.width = Math.sqrt(area);
+                this.height = this.width;
+            }
+        }
+        // let squarea1 = new SquareA(4);
+        // console.log(squarea1.area()) // function이 아니기 때문에 오류!
+        // console.log(squarea1.area)
+        // console.log(squarea1.area)
+        // console.log(squarea1.area)
+        // console.log(squarea1.area)
+        // console.log(squarea1.numOfRequestsForArea)
+
+        // squarea1.area = 25;
+        // console.log(squarea1.height)
+
+        class SquareB {
+            constructor(_width){
+                this.width = _width;
+                this.height = _width;
+            }
+
+            static equals (a, b) {
+                // this. 사용 가능???
+                return a.width * a.height === b.width * b.height;
+            }
+
+            static isValidDimensions(width, height){
+                return width === height;
+            }
+        }
+
+        // let squareb1 = new SquareB(8);
+        // let squareb2 = new SquareB(8);
+        // console.log(SquareB.equals(squareb1, squareb2));
+        // console.log(SquareB.isValidDimensions(6, 6));
+
+        class Person {
+            constructor(_name, _age) {
+                this.name = _name;
+                this.age = _age;
+            }
+
+            describe(){
+                console.log(`I am ${this.name} and I am ${this.age} years old`);
+            }
+        }
+
+        class Programmer extends Person {
+            constructor(_name, _age, _yearsOfExperience) {
+                super(_name, _age);
+                // custom
+                this.yearsOfExperience = _yearsOfExperience;
+            }
+
+            code() {
+                console.log(`${this.name} is coding`);
+            }
+        }
+
+        // const programmers = [
+        //     new Programmer("Dom", 56, 12),
+        //     new Programmer("Jeff", 24, 4)
+        // ]
+
+        // let person1 = new Person("Jeff", 45);
+        // let programmer1 = new Programmer("Dom", 56, 12);
+
+        // console.log(person1);
+        // console.log(programmer1);
+
+        // person1.code(); // 오류
+        // programmer1.code();
+        
+        // person1.describe();
+        // programmer1.describe();
+
+        // function developSoftware(programmers) {
+        //     for (let p of programmers) {
+        //         p.code();
+        //     }
+        // }
+        
+        // developSoftware(programmers);
+
+        class Animal {
+            constructor (name) {
+                this.name = name;
+            }
+
+            makeSound() {
+                console.log("Generic animal sound!!");
+            }
+        }
+
+        class Dog extends Animal {
+            constructor (name) {
+                super(name);
+            }
+
+            makeSound(){
+                console.log("Woof! Woof!");
+            }
+        }
+
+        // const a1 = new Animal("Dom");
+        // a1.makeSound();
+
+        // const a2 = new Dog("Jeff");
+        // a2.makeSound();
+
+        // ListBinding
+        const myList = document.getElementById("myList");
+        const listBinding = new ListBinding(myList);
+    </script>
+</body>
